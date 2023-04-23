@@ -5,7 +5,6 @@ import {
   Drawer,
   List,
   ListItem,
-  ListItemButton,
   ListItemIcon,
   ListItemText,
   AppBar,
@@ -16,58 +15,62 @@ import {
   IconButton,
   TextField,
   InputAdornment,
-  Typography,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
-import { Notifications, Mail, Search } from "@mui/icons-material";
+import {
+  Notifications,
+  Search,
+  NewspaperOutlined,
+  MovieOutlined,
+  MusicNoteOutlined,
+  FlightOutlined,
+  AccountCircleOutlined,
+  SettingsOutlined,
+  HelpOutlined,
+  LogoutOutlined,
+} from "@mui/icons-material";
 
 type Props = {
   window?: () => Window;
 };
 
+const drawerData = [
+  { icon: <NewspaperOutlined />, text: "News" },
+  { icon: <MovieOutlined />, text: "Movies" },
+  { icon: <MusicNoteOutlined />, text: "Music" },
+  { icon: <FlightOutlined />, text: "Travel" },
+  { icon: <AccountCircleOutlined />, text: "Account" },
+  { icon: <SettingsOutlined />, text: "Settings" },
+  { icon: <HelpOutlined />, text: "Help & Support" },
+  { icon: <LogoutOutlined />, text: "Logout" },
+];
+
 const drawer = (
   <div>
     <Toolbar />
-    <Divider />
     <List>
-      {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-        <ListItem key={text} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>{index % 2 === 0 ? <Mail /> : <Mail />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
+      {drawerData.splice(0, 4).map((item, index) => (
+        <ListItem key={index}>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.text} />
         </ListItem>
       ))}
     </List>
     <Divider />
     <List>
-      {["All mail", "Trash", "Spam"].map((text, index) => (
-        <ListItem key={text} disablePadding>
-          <ListItemButton>
-            <ListItemIcon>{index % 2 === 0 ? <Mail /> : <Mail />}</ListItemIcon>
-            <ListItemText primary={text} />
-          </ListItemButton>
+      {drawerData.splice(0, 5).map((item, index) => (
+        <ListItem key={index}>
+          <ListItemIcon>{item.icon}</ListItemIcon>
+          <ListItemText primary={item.text} />
         </ListItem>
       ))}
     </List>
   </div>
 );
 
-const styles = (theme: any) => ({
-  textField: {
-    width: "90%",
-    marginLeft: "auto",
-    marginRight: "auto",
-    color: "inherit",
-    paddingBottom: 0,
-    fontWeight: 500,
-  },
-});
-
 const Navbar = (props: Props) => {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const pages = ["Latest News", "Business", "Sports", "Politics", "Tech"];
-  const settings = ["Profile", "Account", "Dashboard", "Logout"];
   const { window } = props;
   const drawerWidth = 320;
 
@@ -148,9 +151,29 @@ const Navbar = (props: Props) => {
               </Button>
               <TextField
                 id="outlined-basic"
-                label="Search..."
+                // label="Type to search..."
+                placeholder="Type to search..."
                 variant="outlined"
-                margin="normal"
+                sx={{
+                  mt: "0.9rem",
+                  ml: "1.5rem",
+                  width: "30rem",
+                  borderRadius: "8px",
+                  backgroundColor: "#fdfdfd",
+                }}
+                InputProps={{
+                  style: {
+                    height: "3rem",
+                    borderRadius: "6px",
+                  },
+                  endAdornment: (
+                    <InputAdornment position="end">
+                      <IconButton>
+                        <Search />
+                      </IconButton>
+                    </InputAdornment>
+                  ),
+                }}
               />
             </Box>
           </Box>
