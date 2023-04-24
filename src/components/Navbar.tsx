@@ -15,8 +15,8 @@ import {
   IconButton,
   TextField,
   InputAdornment,
+  useMediaQuery,
 } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import {
   Notifications,
   Search,
@@ -89,35 +89,34 @@ const Navbar = (props: Props) => {
         }}
       >
         <Toolbar>
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            sx={{ mr: 2, display: { sm: "none" } }}
-          >
-            <MenuIcon />
-          </IconButton>
           <Box
             sx={{
               flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
           >
-            {pages.map((page) => (
-              <Button
-                key={page}
-                href={`/${page}`}
-                sx={{
-                  my: 2,
-                  mx: 1.5,
-                  color: "grey",
-                  display: "block",
-                  fontSize: "1.2rem",
-                }}
-              >
-                {page}
-              </Button>
-            ))}
+            {pages.map((page) => {
+              const isActive =
+                location.pathname === `/${page}` ||
+                (location.pathname === "/" && page === "Latest News");
+              const href = page === "Latest News" ? "/" : `/${page}`;
+              console.log(location.pathname);
+              return (
+                <Button
+                  key={page}
+                  href={href}
+                  sx={{
+                    my: 2,
+                    mx: 1.5,
+                    color: isActive ? "blue" : "grey",
+                    display: "block",
+                    fontSize: "1.2rem",
+                  }}
+                >
+                  {page}
+                </Button>
+              );
+            })}
             <Button
               sx={{
                 my: 2,
