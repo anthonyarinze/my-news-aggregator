@@ -8,11 +8,28 @@ import {
 import Cards from "../components/Cards";
 import Divider from "../components/Divider";
 import TrendingCards from "../components/TrendingCards";
+import axios from "axios";
+import { useState } from "react";
+import { NEWS_API_KEY } from "../config";
 
 type Props = {};
 
 const Latest = (props: Props) => {
   const drawerWidth = 320;
+  const [data, setData] = useState(null);
+
+  axios
+    .get(
+      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${NEWS_API_KEY}`
+    )
+    .then((response) => {
+      console.log(response.data.articles[1]);
+      // setData(response);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
   return (
     <Box
       sx={{

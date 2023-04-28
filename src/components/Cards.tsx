@@ -1,4 +1,4 @@
-import { Box, Button, IconButton, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import Divider from "./Divider";
 import { ShareOutlined } from "@mui/icons-material";
 
