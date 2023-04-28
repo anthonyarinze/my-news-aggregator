@@ -1,5 +1,13 @@
-import { Box, Button, Divider, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Typography,
+  Divider as MaterialDivider,
+} from "@mui/material";
 import Cards from "../components/Cards";
+import Divider from "../components/Divider";
+import TrendingCards from "../components/TrendingCards";
 
 type Props = {};
 
@@ -8,7 +16,7 @@ const Latest = (props: Props) => {
   return (
     <Box
       sx={{
-        height: "100vh",
+        height: "150vh",
         ml: `${drawerWidth}px`,
         backgroundColor: "#f5f7f8",
         width: `calc(100% - ${drawerWidth}px)`,
@@ -19,8 +27,7 @@ const Latest = (props: Props) => {
       {/* LEFT SIDE */}
       <Box
         sx={{
-          width: "55vw",
-          height: "100vh",
+          width: "51.5vw",
           backgroundColor: "#f5f7f8",
         }}
       >
@@ -39,10 +46,11 @@ const Latest = (props: Props) => {
               whiteSpace: "nowrap",
               borderRadius: "4.5px",
               backgroundColor: "red",
+              position: "relative",
+              boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
               // backgroundImage: "url(image-url)",
               // backgroundSize: "cover",
               // backgroundPosition: "center",
-              position: "relative",
             }}
           >
             <Typography
@@ -77,22 +85,25 @@ const Latest = (props: Props) => {
             >
               25 Most Beautiful Places Around The World
             </Typography>
-            <Box
-              sx={{
-                borderTop: "1px solid white",
-                position: "absolute",
-                bottom: 70,
-                left: 0,
-                height: ".11rem",
-                width: "100%",
-                color: "blue",
-                backgroundColor: "black",
-              }}
-            />
+            <Divider />
           </Box>
         </Button>
-        <Cards />
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Cards />
+          </Grid>
+          <Grid item xs={6}>
+            <Cards />
+          </Grid>
+          <Grid item xs={6}>
+            <Cards />
+          </Grid>
+          <Grid item xs={6}>
+            <Cards />
+          </Grid>
+        </Grid>
       </Box>
+
       {/* RIGHT SIDE */}
       <Box
         sx={{
@@ -100,7 +111,39 @@ const Latest = (props: Props) => {
           height: "100vh",
           backgroundColor: "#f5f7f8",
         }}
-      ></Box>
+      >
+        <Box
+          sx={{
+            ml: "5rem",
+            mt: "2.3rem",
+            width: "23vw",
+            height: "70vh",
+            display: "flex",
+            borderRadius: "4.5px",
+            backgroundColor: "inherit",
+            flexDirection: "column",
+            boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
+          }}
+        >
+          <Typography
+            sx={{
+              fontSize: "1.5rem",
+              position: "relative",
+              left: 25,
+              top: 10,
+            }}
+          >
+            Trending News
+          </Typography>
+          <MaterialDivider sx={{ mt: "1.5rem" }} />
+          <TrendingCards />
+          <TrendingCards />
+          <TrendingCards />
+          <TrendingCards />
+          <TrendingCards />
+          <TrendingCards />
+        </Box>
+      </Box>
     </Box>
   );
 };

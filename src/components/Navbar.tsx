@@ -47,22 +47,25 @@ const drawerData = [
 
 const drawer = (
   <div>
-    <Toolbar />
-    <List>
+    <List sx={{ mt: "1rem" }}>
       {drawerData.splice(0, 4).map((item, index) => (
-        <ListItem key={index}>
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.text} />
-        </ListItem>
+        <Button key={index}>
+          <ListItem key={index}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.text} sx={{ color: "black" }} />
+          </ListItem>
+        </Button>
       ))}
     </List>
     <Divider />
     <List>
       {drawerData.splice(0, 5).map((item, index) => (
-        <ListItem key={index}>
-          <ListItemIcon>{item.icon}</ListItemIcon>
-          <ListItemText primary={item.text} />
-        </ListItem>
+        <Button key={index}>
+          <ListItem key={index}>
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.text} sx={{ color: "black" }} />
+          </ListItem>
+        </Button>
       ))}
     </List>
   </div>
@@ -92,7 +95,6 @@ const Navbar = (props: Props) => {
         <Toolbar>
           <Box
             sx={{
-              flexGrow: 1,
               display: { xs: "none", md: "flex" },
             }}
           >
