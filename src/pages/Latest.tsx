@@ -9,26 +9,29 @@ import Cards from "../components/Cards";
 import Divider from "../components/Divider";
 import TrendingCards from "../components/TrendingCards";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { NEWS_API_KEY } from "../config";
 
 type Props = {};
 
 const Latest = (props: Props) => {
   const drawerWidth = 320;
-  const [data, setData] = useState(null);
+  let data: any = [];
+  // const urlToImage = data.articles[1].urlToImage;
 
-  axios
-    .get(
-      `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${NEWS_API_KEY}`
-    )
-    .then((response) => {
-      console.log(response.data.articles[1]);
-      // setData(response);
-    })
-    .catch((error) => {
-      console.log(error);
-    });
+  useEffect(() => {
+    axios
+      .get(
+        `https://newsapi.org/v2/top-headlines?sources=techcrunch&apiKey=${NEWS_API_KEY}`
+      )
+      .then((response) => {
+        console.log(typeof response.data.articles[1].urlToImage);
+        data = response.data;
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <Box
@@ -65,7 +68,7 @@ const Latest = (props: Props) => {
               backgroundColor: "red",
               position: "relative",
               boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.25)",
-              // backgroundImage: "url(image-url)",
+              // backgroundImage: urlToImage,
               // backgroundSize: "cover",
               // backgroundPosition: "center",
             }}
